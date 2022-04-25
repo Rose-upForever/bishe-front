@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Vue绑定事件---复杂写法 -->
+        <button v-on:click="search()">点击</button>
+        <!-- Vue绑定时间，简化写法 -->
+        <button @click = "search()">查看</button>
+    </div>
+    <script src="vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods:{
+                search(){
+                    console.log('search');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

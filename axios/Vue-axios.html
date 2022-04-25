@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 将获取到的数据在页面中显示出来 -->
+        <div v-for="user in userList">
+            {{user.name}} --{{user.age}}
+        </div>
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                userList:[]
+            },
+            //created方法在页面渲染之前执行，可以在这里做一些初始化的操作,
+            //created方法中调用一些定义好的方法，用以完成初始化操作
+            created(){
+                //this表示当前的vue实例对象部分。
+                this.getUserList();
+            },
+            //编写具体的方法
+            methods:{
+                getUserList(){
+                    //axios.get函数中参数是所请求的文件的路径和名称
+                    axios.get("data.json")
+                        //当请求成功之后，会执行then方法
+                        //response表示变量的名字，表示得到想要访问的数据。
+                        .then(response =>{
+                            //console.log(response)
+                          this.userList = response.data.data.items;
+                        })
+                        //当请求失败之后，会执行catch方法
+                        //error表示变量的名字，表示失败的信息
+                      .catch(error =>{
+
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
